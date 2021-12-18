@@ -27,7 +27,7 @@ int     main(void)
 
     a = 0.0;
     b = 1.0;
-    M_viz = 500;
+    M_viz = 500; //(M - 1) * 100 + 1; //1500;
     iter = (b - a) / (M_viz - 1);
     h = (b - a) / (M - 1);
 
@@ -42,9 +42,16 @@ int     main(void)
     double H   = h * 0.01;
     xh = x_gen(a, M_h, H);
     yh = y_gen(xh, M_h);
+    //print_array(xh, M_h);
+
     //Равномерная сетка для визуализации
     xviz = x_gen(a, M_viz, iter);
     yviz = y_gen(xviz, M_viz);
+    //print_array(xviz, M_viz);
+    /*for (size_t i = 0; i < M_h; ++i)
+            std::cout << yh[i] - yviz[i]<< std::endl;
+    std::cout << std::endl;*/
+
     //Вычисление коэффициентов для функции наилучшего приближения
     koef = slau(x, N, L, K, xrand, yrand);
     //Вычисление значений функции наилучшего приближения
@@ -52,10 +59,15 @@ int     main(void)
     g 	  = best_fit_func		(xviz, M_viz, x, K, N, koef);
     gh    = best_fit_func		(xh,   M_h,   x, K, N, koef);
 
+    /*for (size_t i = 0; i < M_h; ++i)
+          std::cout << gh[i] - g[i]<< std::endl;*/
+
     std::cout<<"Error for rand points\n\n";
     error_calculation(yrand, grand, K * L);
     std::cout<<"\n\nError for h/100 \n\n";
-    error_calculation(yh, gh, M_h);
+    error_calculation(  yh, gh, M_h);
+    std::cout<<"\n\nError for M_viz \n\n";
+    error_calculation(yviz, g, M_viz);
 
     print_file("C:\\Users\\Владислав\\lagrange.csv", xviz,    g,  M_viz);
     print_file("C:\\Users\\Владислав\\func.csv", 	 xviz,  yviz, M_viz);
