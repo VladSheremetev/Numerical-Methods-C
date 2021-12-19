@@ -97,14 +97,14 @@ void print_file(std::string name_file, double* x, double* y, size_t size_array_p
 
 void  error_calculation(double* y, double* l, size_t size_array)
 {
-    double  abs_norm_1 = 0,
-    		abs_norm_2 = 0,
-			rel_norm_1 = 0,
-			rel_norm_2 = 0,
-			tmp_abs_norm_inf = 0,
-			tmp_rel_norm_inf = 0,
-    		abs_norm_inf,
-			rel_norm_inf;
+    double  abs_norm_1 = 0.0,
+    		abs_norm_2 = 0.0,
+			rel_norm_1 = 0.0,
+			rel_norm_2 = 0.0,
+			tmp_abs_norm_0 = 0.0,
+			tmp_rel_norm_0 = 0.0,
+    		abs_norm_0,
+			rel_norm_0;
 
     for (size_t i = 0; i < size_array; ++i)
     {
@@ -112,23 +112,24 @@ void  error_calculation(double* y, double* l, size_t size_array)
         rel_norm_1 += abs(y[i]);
         abs_norm_2 += pow(abs(l[i] - y[i]), 2);
         rel_norm_2 += pow(abs(y[i]), 2);
-        if(tmp_abs_norm_inf < abs(l[i] - y[i])) tmp_abs_norm_inf = abs(l[i] - y[i]);
-        if(tmp_rel_norm_inf < abs(y[i])) tmp_rel_norm_inf = abs(l[i]);
+        if(tmp_abs_norm_0 < abs(l[i] - y[i])) tmp_abs_norm_0 = abs(l[i] - y[i]);
+        if(tmp_rel_norm_0 < abs(y[i])) tmp_rel_norm_0 = abs(y[i]);
 
     }
-    rel_norm_1   = abs_norm_1 / rel_norm_1;
-    abs_norm_2   = sqrt(abs_norm_2);
-    rel_norm_2   = abs_norm_2 / rel_norm_2;
-    abs_norm_inf = tmp_abs_norm_inf;
-    rel_norm_inf = tmp_rel_norm_inf;
-    rel_norm_inf = abs_norm_inf / rel_norm_inf;
-    std::cout<<"Absolute norme 0 := "<<abs_norm_inf<<std::endl;
-    std::cout<<"Absolute norme 1 := "<<abs_norm_1<<std::endl;
-    std::cout<<"Absolute norme 2 := "<<abs_norm_2<<std::endl;
-    std::cout<<"Relative norme 0 := "<<rel_norm_inf<<std::endl;
-    std::cout<<"Relative norme 1 := "<<rel_norm_1<<std::endl;
-    std::cout<<"Relative norme 2 := "<<rel_norm_2<<std::endl;
+    rel_norm_1 = abs_norm_1 / rel_norm_1;
+    abs_norm_2 = sqrt(abs_norm_2);
+    rel_norm_2 = abs_norm_2 / rel_norm_2;
+    abs_norm_0 = tmp_abs_norm_0;
+    rel_norm_0 = tmp_rel_norm_0;
+    rel_norm_0 = abs_norm_0 / rel_norm_0;
+    std::cout<<"Absolute norme 0 := "<<std::scientific<<abs_norm_0<<std::endl;
+    std::cout<<"Absolute norme 1 := "<<std::scientific<<abs_norm_1<<std::endl;
+    std::cout<<"Absolute norme 2 := "<<std::scientific<<abs_norm_2<<std::endl;
+    std::cout<<"Relative norme 0 := "<<std::scientific<<rel_norm_0<<std::endl;
+    std::cout<<"Relative norme 1 := "<<std::scientific<<rel_norm_1<<std::endl;
+    std::cout<<"Relative norme 2 := "<<std::scientific<<rel_norm_2<<std::endl;
 }
+
 
 void print_array(double *array, size_t n)
 {
