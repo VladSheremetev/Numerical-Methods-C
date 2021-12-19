@@ -6,22 +6,20 @@
 double*   x_rand_gen(double a, double b, size_t count_point)
 {
     double*		arrx = new double [count_point];
-    int         count_point_tmp = count_point;
     double 		point;
 
     srand(static_cast<unsigned int>(time(NULL)));
-    for (size_t index = 0 ; count_point > 0 ; )
+    for (size_t i = 0 ; i < count_point; )
     {
     	point = a + (b - a) * (static_cast<double>(rand()) / (static_cast<double>(RAND_MAX)));
-    	if (!search_point(arrx, index, point)){
-    		arrx[index] = point;
-    		++index,
-			--count_point;
+    	if (!search_point(arrx, i, point)){
+    		arrx[i] = point;
+    		++i;
     	}
     }
-    quick_sort(arrx, 0, count_point_tmp);
+    quick_sort(arrx, 0, count_point);
     arrx[0] = a;
-    arrx[count_point_tmp - 1] = b;
+    arrx[count_point - 1] = b;
     return arrx;
 }
 
@@ -39,9 +37,9 @@ double*   y_gen(double *x, size_t count_point)
 {
     double*	y = new double [count_point];
 
-    for (size_t index = 0; count_point > 0; ++index, --count_point)
+    for (size_t i = 0; i < count_point; ++i)
     {
-    	y[index] = cos(2.0*M_PI*x[index]);
+    	y[i] = cos(2.0*M_PI*x[i]);
     }
 
     return y;
