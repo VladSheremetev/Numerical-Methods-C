@@ -2,9 +2,10 @@
 
 #define _USE_MATH_DEFINES
 
+
 double   *x_gen(double a, size_t count_point, double h)
 {
-	 double*	x = new double [count_point];
+	 double*   x = new double [count_point];
 
 	    for (size_t i = 0; i < count_point; ++i)
 	    {
@@ -14,10 +15,12 @@ double   *x_gen(double a, size_t count_point, double h)
 	 return x;
 }
 
+
 double  fun(double x)
 {
     return pow(x, 1);
 }
+
 
 double  integral(double x)
 {
@@ -29,6 +32,7 @@ double   yintegral(double a, double b)
 {
     return integral(b) - integral(a);
 }
+
 
 double  square_formula(double *x, size_t K, double h)
 {
@@ -42,6 +46,7 @@ double  square_formula(double *x, size_t K, double h)
     return res;
 }
 
+
 double  trapeze_formula(double *x, size_t K, double h)
 {
     double  res = 0;
@@ -54,6 +59,7 @@ double  trapeze_formula(double *x, size_t K, double h)
     return res;
 }
 
+
 double  simpson_formula(double *x, size_t K, double h)
 {
     double  res = 0;
@@ -65,6 +71,7 @@ double  simpson_formula(double *x, size_t K, double h)
 
     return res;
 }
+
 
 double  newton_formula(double *x, size_t K, double h)
 {
@@ -83,6 +90,7 @@ double  newton_formula(double *x, size_t K, double h)
 
     return res;
 }
+
 
 double  gauss_formula(double *x, size_t K, double h)
 {
