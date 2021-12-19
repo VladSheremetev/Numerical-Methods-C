@@ -3,7 +3,7 @@
 int     main(void)
 {
     double  a, b;		//координаты концов отрезка
-    double	K;			//количество интервалов для разбиения отрезка [a, b]
+    int		K;			//количество интервалов для разбиения отрезка [a, b]
     double  h;			//шаг равномерной сетки
     double  *x;			//равномерная сетка
     double  yint;		//значение интеграла на отрезке [a, b]
@@ -70,19 +70,19 @@ int     main(void)
     err_gauss2  = abs((yint - gauss2))   / abs(yint);
 
 
-    printf("    h    |   h/2 \n");
-    printf("---------------------\n");
-    printf("  %.2lf  |  %.2lf      mesh size\n", K / 2, K);
-    printf("---------------------\n");
-    printf("%.2e | %.2e    square\n",  err_square1,  err_square2);
-    printf("---------------------\n");
-    printf("%.2e | %.2e    trapeze\n", err_trapeze1, err_trapeze2);
-    printf("---------------------\n");
-    printf("%.2e | %.2e    simpson\n", err_simpson1, err_simpson2);
-    printf("---------------------\n");
-    printf("%.2e | %.2e    newton\n",  err_newton1,  err_newton2);
-    printf("---------------------\n");
-    printf("%.2e | %.2e    gauss\n",   err_gauss1,   err_gauss2);
+    printf("      h      |      h/2 \n");
+    printf("-----------------------------\n");
+    printf("     %d	     |      %d         mesh size\n", K / 2, K);
+    printf("-----------------------------\n");
+    printf("%.6e | %.6e    square\n",  err_square1,  err_square2);
+    printf("-----------------------------\n");
+    printf("%.6e | %.6e    trapeze\n", err_trapeze1, err_trapeze2);
+    printf("-----------------------------\n");
+    printf("%.6e | %.6e    simpson\n", err_simpson1, err_simpson2);
+    printf("-----------------------------\n");
+    printf("%.6e | %.6e    newton\n",  err_newton1,  err_newton2);
+    printf("-----------------------------\n");
+    printf("%.6e | %.6e    gauss\n",   err_gauss1,   err_gauss2);
 
 
     delete [] x;
