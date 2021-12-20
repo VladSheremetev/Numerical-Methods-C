@@ -20,11 +20,11 @@ double*   x_rand_gen(double a, double b, size_t count_point)
     double*		x = new double [count_point];
     double 		point;
 
-    srand(static_cast<unsigned int>(time(NULL)));
     for (size_t i = 0 ; i < count_point; )
     {
     	point = a + (b - a) * (static_cast<double>(rand()) / (static_cast<double>(RAND_MAX)));
-    	if (!search_point(x, i, point)){
+    	if (!search_point(x, i, point)) {
+    		//std::cout<<point<<std::endl;
     		x[i] = point;
     		++i;
     	}
@@ -35,9 +35,9 @@ double*   x_rand_gen(double a, double b, size_t count_point)
 
 
 bool search_point(double* array, size_t size_array, double point){
-	double eps = 0.01;
+	double eps = 0.001;
 	for (size_t i = 0; i < size_array; ++i){
-		if (abs(point - array[i]) < eps) {return true;}
+		if (abs(point - array[i]) < eps) return true;
 	}
 	return false;
 }
@@ -49,7 +49,7 @@ double* y_gen(double* x, size_t count_point)
 
     for (size_t i = 0; i < count_point; ++i)
     {
-        y[i] = cos(2.0*M_PI*x[i]);
+        y[i] = sin(x[i]);
     }
 
     return y;
@@ -104,13 +104,15 @@ double      *best_fit_func(double *xviz, size_t M_viz, double *x, size_t K, size
 {
     double  *g = new double [M_viz];
     double  *res;
+    int 	ielem;
+    double 	lag;
 
-    for (size_t i = 0; i < M_viz; ++i)
+    for (size_t j = 0; j < K; ++j)
     {
-    	double lag = 0.0;
-        for (size_t j = 0; j < K; ++j)
+    	ielem = j * (N - 1);
+        for (size_t i = 0; i < M_viz; ++i)
         {
-        	int ielem = j * (N - 1);
+        	lag = 0.0;
 
             if (x[ielem] <= xviz[i] && xviz[i] <= x[ielem + (N - 1)])
             {
@@ -120,6 +122,7 @@ double      *best_fit_func(double *xviz, size_t M_viz, double *x, size_t K, size
             }
         }
     }
+
     delete [] res;
     return g;
 }
@@ -179,17 +182,16 @@ double* slau(double *res_x, size_t N, size_t L, size_t K, double *xrandsave, dou
 	double  *yrand; 					//значение функции в случайных точках, сгенерированных для каждого конечного элемента
 	size_t  M = (N - 1) * K + 1;
 	double  **phi = new double* [L];	//базисные функции Лагранжа
-	for (size_t i = 0; i < L; ++i) phi[i] = new double [N];
 	double  *koef = new double [M];		//коэффициенты для функции наилучшего приближения
 	Eigen::MatrixXf A(M, M);			//матрица скалярного произведения базисных функций
 	Eigen::VectorXf B(M), C1;
 	A.setZero();
 	B.setZero();
 
+	srand(static_cast<unsigned int>(time(NULL)));
 	for (size_t p = 0; p < K; p++)
 	{
-				size_t ielem = p * (N - 1);
-
+		    size_t ielem = p * (N - 1);
 	    	    xrand = x_rand_gen(res_x[ielem], res_x[ielem + (N - 1)], L);
 	    	    yrand = y_gen(xrand, L);
 
@@ -211,9 +213,11 @@ double* slau(double *res_x, size_t N, size_t L, size_t K, double *xrandsave, dou
 
 	    	            for (size_t k = 0; k < L; ++k) B(ielem + i) += yrand[k] * phi[k][i];
 	    	        }
+
+	    	    for (size_t i = 0; i < L; ++i) delete [] phi[i];
 	 }
 
-	    //cout<<A<<endl;
+		//std::cout<<A<<std::endl;
 
 	    //GAUSS
 	    C1 = A.colPivHouseholderQr().solve(B);
