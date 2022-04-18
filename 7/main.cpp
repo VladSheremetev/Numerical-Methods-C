@@ -21,5 +21,11 @@ int main(){
 	std::cout <<std::setw(10)<<"Newton discret itr: "<<std::setw(2)<<ans_newton_disc[2]<<std::setw(10)<<" Solution: "; print_array(ans_newton_disc, 2);
 
 	system("python viz.py");
+	
+	delete [] ans_s_it;
+	delete [] ans_newton;
+	delete [] ans_newton_mod;
+	delete [] ans_newton_disc;
+	
 	return 0;
 }
