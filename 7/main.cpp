@@ -2,10 +2,10 @@
 
 int main(){
 
-    double* ans_s_it;
-    double* ans_newton;
-    double* ans_newton_mod;
-    double* ans_newton_disc;
+    	double* ans_s_it;
+    	double* ans_newton;
+    	double* ans_newton_mod;
+    	double* ans_newton_disc;
 
 	//double x_0 = 0.72, y_0 = 0.89; //начальные точки
 	double x_0 = 1.5, y_0 = 1.5;
