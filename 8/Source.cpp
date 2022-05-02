@@ -94,8 +94,8 @@ void euler_predict(double* x, double* y, double* y1, size_t n){
 
 void runge_kutt_2(double* x, double* y, double* y1, size_t n){
 	double h = (x[n - 1] - x[0]) / (n - 1);
-	double k1, k2;					// äëÿ ïåðâîãî óðàâíåíèÿ ñèñòåìû
-	double k11, k21;				// äëÿ âòîðîãî óðàâíåíèÿ ñèñòåìû
+	double k1, k2;					
+	double k11, k21;	
 	for (size_t i = 1; i < n; ++i)
 	{
 	    k1 = h*f1(y1[i - 1]);
@@ -112,8 +112,8 @@ void runge_kutt_4(double* x, double* y, double* y1, size_t n){
 	double h = (x[n - 1] - x[0]) / (n - 1);
 	double h2 = h / 2.0;
 	double h6 = h / 6.0;
-	double k1, k2, k3, k4;					// äëÿ ïåðâîãî óðàâíåíèÿ ñèñòåìû
-	double k11, k21, k31, k41;				// äëÿ âòîðîãî óðàâíåíèÿ ñèñòåìû
+	double k1, k2, k3, k4;					
+	double k11, k21, k31, k41;
 	for (size_t i = 1; i < n; ++i)
 	{
 		k1 = f1(y1[i - 1]);
