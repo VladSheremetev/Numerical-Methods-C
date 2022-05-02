@@ -43,9 +43,9 @@ int main()
 	double*y2_4 = new double[n2];
 	double* y21 = new double[n2];
 	double*y21_1 = new double[n2];
-    double*y21_2 = new double[n2];
-    double*y21_3 = new double[n2];
-    double*y21_4 = new double[n2];
+    	double*y21_2 = new double[n2];
+    	double*y21_3 = new double[n2];
+    	double*y21_4 = new double[n2];
 	y2[0] = q0, y21[0] = q1;
 	y2_1[0] = q0, y21_1[0] = q1;
 	y2_2[0] = q0, y21_2[0] = q1;
@@ -69,10 +69,10 @@ int main()
 	double*y3_3 = new double[n3];
 	double*y3_4 = new double[n3];
 	double* y31 = new double[n3];
-    double*y31_1 = new double[n3];
-    double*y31_2 = new double[n3];
-    double*y31_3 = new double[n3];
-    double*y31_4 = new double[n3];
+    	double*y31_1 = new double[n3];
+    	double*y31_2 = new double[n3];
+    	double*y31_3 = new double[n3];
+    	double*y31_4 = new double[n3];
 	y3[0] = q0, y31[0] = q1;
 	y3_1[0] = q0, y31_1[0] = q1;
 	y3_2[0] = q0, y31_2[0] = q1;
