@@ -143,9 +143,9 @@ void adams_3(double* x, double* y, double* y1, size_t n){
 		k1 = h * f1(y1[i - 1]);
 		k11 = h * f2(x[i - 1], y[i - 1], y1[i - 1]);
 		k2 = h * f1(y1[i - 2]);
-        k21 = h * f2(x[i - 2], y[i - 2], y1[i - 2]);
+        	k21 = h * f2(x[i - 2], y[i - 2], y1[i - 2]);
 		k3 = h * f1(y1[i - 3]);
-        k31 = h * f2(x[i - 3], y[i - 3], y1[i - 3]);
+        	k31 = h * f2(x[i - 3], y[i - 3], y1[i - 3]);
 		delta_y = (23.0 * k1 - 16.0 * k2 + 5.0 * k3) / 12.0;
 		delta_y1 = (23.0 * k11 - 16.0 * k21 + 5.0 * k31) / 12.0;
 		y[i] = y[i - 1] + delta_y;
